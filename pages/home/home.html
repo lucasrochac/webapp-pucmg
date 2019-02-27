@@ -1,0 +1,34 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton *navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding *ngIf="dados">
+<div id="header">
+  <img class="avatar" src="/assets/imgs/avatar-cr.png">
+  <h2 class="nome">{{ dados.matricula.aluno.nome }}</h2>
+  <p class="curso">{{ dados.matricula.curso.nome }}</p>
+  <p class="media" type="number" name="media" placeholder="Decimal" ng-model="media | number : 2" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01">{{ media }}</p>
+  <button ion-button icon-start color="light" class="btn-boletim">
+    <ion-icon name="document"></ion-icon>
+      Ver Boletim
+    </button>
+</div>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item>
+      <ion-item *ngFor="let i of dados.matricula.curso.avaliacoes">
+        <h2>{{ i.nomeAvaliacao }}</h2>
+        <p>{{ i.notaAvaliacao.valorNota }}</p>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+</ion-content>
